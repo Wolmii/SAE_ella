@@ -49,7 +49,7 @@ class Plan{
 
     }
 
-    public void ajoter(GroupePersonne grp, Table tbl){
+    public void ajouter(GroupePersonne grp, Table tbl){
 
     }
 
@@ -143,5 +143,13 @@ class Personne{
         this.prenom=p;
         this.index=num;
         num++;
+    }
+
+    public String getNom(){
+        return this.nom;
+    }
+
+    public String getPrenom(){
+        return this.prenom;
     }
 }
