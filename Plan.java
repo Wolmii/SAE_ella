@@ -2,45 +2,33 @@ import java.util.ArrayList;
 
 public class Plan {
 
-    private ArrayList<ArrayList<Table>> listTable = new ArrayList<ArrayList<Table>>();
+    private final int nbPetiteTable = 10;
+    private final int nbGrandeTable = 20;
+    private final int nbTable = nbPetiteTable + nbGrandeTable;
+    private ArrayList<Table> listTable = new ArrayList<Table>(nbTable);
 
     Plan(){
-        this.listTable.add(new ArrayList<PetiteTable>());
+        for (int i = 0; i < nbPetiteTable; i++) {
+            this.listTable.add(new PetiteTable());
+        }
+        for (int i = 0; i < nbGrandeTable; i++) {
+            this.listTable.add(new GrandeTable());
+        }
     }
 
-    public void ajouter(Personne personne, Table table){
-        this.listTable.get(table).ajouter(personne);
+    public void ajouter(Participant participant, Table table){
+        this.listTable.get(this.listTable.indexOf(table)).ajouter(participant);
     }
 
-    public void ajouter(GroupePersonne grp, Table tbl){
-
-    }
-
-    public void supprimer(Personne pers, Table tbl){
-
-    }
-
-    public void supprimer(GroupePersonne grp, Table tbl){
+    public void supprimer(Participant participant, Table table){
 
     }
 
-    public void enlever(Personne pers, Table tbl){
+    public void deplacer(Participant participant, Table table){
 
     }
 
-    public void enlever(GroupePersonne grp, Table tbl){
-
-    }
-
-    public void deplacer(Personne pers, Table tbl){
-
-    }
-
-    public void deplacer(GroupePersonne grp, Table tbl){
-
-    }
-
-    public boolean verifierDisponibilite(Table tbl){
+    public boolean verifierDisponibilite(Table table){
         boolean verif=false;
         return verif;
     }
