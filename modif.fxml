@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Table ">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefWidth="50.0" text="Nom : " />
+                  <TextField fx:id="barNom" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefWidth="90.0" text="Prénom : " />
+                  <TextField fx:id="barPrenom" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <ListView prefHeight="200.0" prefWidth="300.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+               <children>
+                  <Button fx:id="bnAjouter" mnemonicParsing="false" onAction="#ajouter" prefWidth="100.0" styleClass=".button" stylesheets="@style.css" text="Ajouter" />
+                  <Button fx:id="bnEnlever" mnemonicParsing="false" onAction="#enlever" prefWidth="100.0" styleClass=".button" stylesheets="@style.css" text="Enlever" />
+                  <Button fx:id="bnSupprimer" mnemonicParsing="false" onAction="#supprimer" prefWidth="100.0" styleClass=".button" stylesheets="@style.css" text="Supprimer" />
+                  <Button fx:id="bnDeplacer" mnemonicParsing="false" onAction="#deplacer" prefWidth="100.0" styleClass=".button" stylesheets="@style.css" text="Déplacer" />
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" styleClass=".button" stylesheets="@style.css">
+         <children>
+            <Button fx:id="bnAnnuler" mnemonicParsing="false" onAction="#annuler" prefWidth="100.0" text="Annuler" />
+            <Button fx:id="bnValider" mnemonicParsing="false" onAction="#valider" prefWidth="100.0" text="Valider">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets left="8.0" right="8.0" />
+   </padding>
+</VBox>
