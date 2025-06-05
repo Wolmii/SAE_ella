@@ -38,11 +38,11 @@ public abstract class Table implements HasNumero {
     }
 
     /**
-     * Supprime un participant de cette table.
+     * Enlève un participant de cette table.
      *
-     * @param participant Le participant à supprimer
+     * @param participant Le participant à enlever
      */
-    public void supprimer(Participant participant) {
+    public void enlever(Participant participant) {
         for (Participant p : this.listParticipant) {
             if (p instanceof Groupe) {
                 if (((Groupe) p).getMembres().contains(participant)) {
@@ -61,7 +61,7 @@ public abstract class Table implements HasNumero {
      * @param table La table de destination
      */
     public void deplacer(Participant participant, Table table) {
-        this.supprimer(participant);
+        this.enlever(participant);
         table.ajouter(participant);
     }
 

@@ -69,34 +69,34 @@ public class Plan {
     }
 
     /**
-     * Supprime un participant d'une table spécifique.
+     * Enlève un participant d'une table spécifique.
      *
-     * @param participant Le participant à supprimer
+     * @param participant Le participant à enlever
      * @param table La table concernée
      */
-    public void supprimer(Participant participant, Table table) {
-        this.getTable(table).supprimer(participant);
+    public void enlever(Participant participant, Table table) {
+        this.getTable(table).enlever(participant);
     }
 
     /**
-     * Enlève une personne d'une table et la supprime aussi du gala.
+     * Supprime une personne d'une table et la supprime aussi du gala.
      *
-     * @param personne La personne à enlever
+     * @param personne La personne à Supprimer
      * @param table La table concernée
      */
-    public void enlever(Personne personne, Table table) {
-        this.getTable(table).supprimer(personne);
+    public void supprimer(Personne personne, Table table) {
+        this.getTable(table).enlever(personne);
         this.gala.supprimer(personne); // Méthode supposée existante dans Gala
     }
 
     /**
-     * Enlève un groupe d'une table et retire chaque membre du gala.
+     * Supprime un groupe d'une table et supprime chaque membre du gala.
      *
-     * @param groupe Le groupe à retirer
+     * @param groupe Le groupe à supprimer
      * @param table La table concernée
      */
-    public void enlever(Groupe groupe, Table table) {
-        this.getTable(table).supprimer(groupe);
+    public void supprimer(Groupe groupe, Table table) {
+        this.getTable(table).enlever(groupe);
         for (Personne personne : groupe.getMembres()) {
             this.gala.supprimer(personne); // Méthode supposée existante dans Gala
         }
