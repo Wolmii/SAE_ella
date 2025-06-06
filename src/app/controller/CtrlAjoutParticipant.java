@@ -16,6 +16,9 @@ public class CtrlAjoutParticipant {
 
     @FXML
     private ListView<?> listPersonne;
+    
+    @FXML
+    private Button bnAnnuler;
 
     @FXML
     private RadioButton recherche;
@@ -36,6 +39,11 @@ public class CtrlAjoutParticipant {
     @FXML
     void 4b4884(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void annuler(ActionEvent event) {
+    	Main.fermerAjouter();
     }
 
 }
