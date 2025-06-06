@@ -2,6 +2,8 @@ package app.controller;
 
 import java.io.IOException;
 
+import app.service.Gala;
+import app.service.Plan;
 import app.ui.FenAjouter;
 import app.ui.FenPlan;
 import app.ui.FenTable;
@@ -12,6 +14,8 @@ public class Main extends Application {
 	static private FenTable fTable;
 	static private FenAjouter fAjout;
 	static private FenPlan fPlan;
+	static public Gala gala = new Gala("le gala", null, "lannion");
+	static public Plan plan;
 	
 	
 	public void start(Stage maFenetre) throws IOException{

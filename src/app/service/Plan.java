@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class Plan {
 
     /** Nombre fixe de petites tables dans un plan */
-    private final int nbPetiteTable = 10;
+    public static final int nbPetiteTable = 10;
 
     /** Nombre fixe de grandes tables dans un plan */
-    private final int nbGrandeTable = 20;
+    public static final int nbGrandeTable = 20;
 
     /** Nombre total de tables attendues dans un plan */
-    private final int nbTable = nbPetiteTable + nbGrandeTable;
+    public static final int nbTable = nbPetiteTable + nbGrandeTable;
 
     /** Le gala auquel ce plan est associé */
     private Gala gala;
