@@ -12,8 +12,15 @@ import javafx.stage.Stage;
 public class FenPlan extends Stage {
 	private CtrlPlan ctrl;
 
+<<<<<<< HEAD
 	public FenPlan() throws IOException {
 		this.setTitle("Plan"); 
+=======
+	private CtrlPlan ctrl;
+
+	public FenPlan() throws IOException {
+		this.setTitle("plan"); 
+>>>>>>> a5598e751a13f0b7125904820280dc06f4c297d8
 		this.setResizable(false);
 		Scene laScene = new Scene(creerSceneGraph());
 		this.setScene(laScene);
