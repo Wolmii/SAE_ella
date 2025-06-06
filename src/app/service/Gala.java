@@ -1,6 +1,5 @@
 package app.service;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -38,7 +37,7 @@ public class Gala {
         this.lieu = lieu;
     }
 
-    /**
+	/**
      * Ajoute une personne à la liste des invités du gala.
      *
      * @param personne La personne à ajouter

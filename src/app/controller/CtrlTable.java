@@ -71,7 +71,7 @@ public class CtrlTable {
     public void initialize() {
     	listGrp = new ListView<Personne>();
     	ObservableList<Personne> groupe  =FXCollections.observableArrayList (Data.g1.getMembres());
-    	listGrp.setItems(groupe);
+    	listGrp.getItems().setAll(Data.g1.getMembres());
     	for (Personne n : listGrp.getItems()) {
     		System.out.println(n);
     	}
