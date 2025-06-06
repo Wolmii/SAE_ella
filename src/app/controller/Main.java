@@ -2,10 +2,12 @@ package app.controller;
 
 import java.io.IOException;
 
+import app.service.Data;
 import app.ui.FenAjouter;
 import app.ui.FenPlan;
 import app.ui.FenTable;
 import javafx.application.Application;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -15,11 +17,13 @@ public class Main extends Application {
 	
 	
 	public void start(Stage maFenetre) throws IOException{
-		fPlan = new FenPlan();
-		fTable = new FenTable();
+		Data.main(null);
 		fAjout = new FenAjouter();
-		test fentest = new test();
-		fentest.show();
+		fAjout.initModality(Modality.APPLICATION_MODAL);
+		fTable = new FenTable();
+		fTable.initModality(Modality.APPLICATION_MODAL);
+		fPlan = new FenPlan();
+		fTable.show();
 	}
 
 	public static void main(String[] args) {

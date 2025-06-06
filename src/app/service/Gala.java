@@ -1,6 +1,7 @@
 package app.service;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +16,7 @@ public class Gala {
     private String nom;
 
     /** Date de l'événement */
-    private Date date;
+    private LocalDate date;
 
     /** Lieu où se tient le gala */
     private String lieu;
@@ -28,12 +29,12 @@ public class Gala {
      * Initialise le nom, la date et le lieu du gala.
      *
      * @param nom  Le nom du gala
-     * @param date La date à laquelle le gala a lieu
+     * @param localDate La date à laquelle le gala a lieu
      * @param lieu Le lieu de l'événement
      */
-    public Gala(String nom, Date date, String lieu) {
+    public Gala(String nom, LocalDate localDate, String lieu) {
         this.nom = nom;
-        this.date = date;
+        this.date = localDate;
         this.lieu = lieu;
     }
 
@@ -69,7 +70,7 @@ public class Gala {
      *
      * @return La date de l'événement
      */
-    public Date getDate() {
+    public LocalDate getDate() {
         return this.date;
     }
 

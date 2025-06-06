@@ -5,14 +5,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #FBFAFF;" styleClass="fond" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #FBFAFF;" styleClass="fond" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CtrlAjoutParticipant">
    <children>
       <ListView fx:id="listPersonne" layoutX="31.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #EA7095; -fx-border-radius: 7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0" />
       <TextField fx:id="numTable" layoutX="224.0" layoutY="14.0" prefWidth="80.0" promptText="table ex.1" styleClass="autre" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button fx:id="ajouter" mnemonicParsing="false" prefHeight="30.0" prefWidth="80.0" styleClass=".button" text="Ajouter" textFill="#4b4884" />
-            <Button fx:id="bnAnnuler" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#annuler" prefHeight="30.0" prefWidth="80.0" text="Annuler" />
+            <Button fx:id="bnAnnuler" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#annuler" prefHeight="30.0" prefWidth="80.0" text="Annuler" />
          </children>
       </VBox>
       <Label text="Liste des personnes" textFill="#4b4884" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="0.0" />

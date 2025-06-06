@@ -26,21 +26,6 @@ public class CtrlAjoutParticipant {
 
     @FXML
     private TextField numTable;
-
-    @FXML
-    void 4b4884(ActionEvent event) {
-
-    }
-
-    @FXML
-    void 4b4884(ActionEvent event) {
-
-    }
-
-    @FXML
-    void 4b4884(ActionEvent event) {
-
-    }
     
     @FXML
     void annuler(ActionEvent event) {
