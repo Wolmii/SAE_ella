@@ -1,5 +1,6 @@
 package app.controller;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,6 +45,11 @@ public class CtrlAjoutParticipant {
     @FXML
     void annuler(ActionEvent event) {
     	Main.fermerAjouter();
+    }
+    
+    public void initialize() {
+    	ajouter.disableProperty().bind(
+				Bindings.equal(listPersonne.getSelectionModel().selectedIndexProperty(), -1));
     }
 
 }
