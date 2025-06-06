@@ -59,4 +59,9 @@ public class Personne extends Participant {
             return false;
         }
     }
+    
+    public String toString() {
+		return nom;
+    	
+    }
 }

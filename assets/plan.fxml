@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #FBFAFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CtrlPlan">
    <top>
-      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #CDD1DC;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #CDD1DC;" BorderPane.alignment="CENTER">
          <children>
             <Label text="ELLA'GEST" textFill="#4b4884">
                <font>

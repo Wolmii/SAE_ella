@@ -2,12 +2,17 @@ package app.controller;
 
 import java.io.IOException;
 
+<<<<<<< HEAD
 import app.service.Gala;
 import app.service.Plan;
+=======
+import app.service.Data;
+>>>>>>> 529c85f14f91ab3e1b6391d1ca919bcb7251407f
 import app.ui.FenAjouter;
 import app.ui.FenPlan;
 import app.ui.FenTable;
 import javafx.application.Application;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,10 +24,13 @@ public class Main extends Application {
 	
 	
 	public void start(Stage maFenetre) throws IOException{
-		fPlan = new FenPlan();
-		fTable = new FenTable();
+		Data.main(null);
 		fAjout = new FenAjouter();
-		fPlan.show();
+		fAjout.initModality(Modality.APPLICATION_MODAL);
+		fTable = new FenTable();
+		fTable.initModality(Modality.APPLICATION_MODAL);
+		fPlan = new FenPlan();
+		fTable.show();
 	}
 
 	public static void main(String[] args) {
