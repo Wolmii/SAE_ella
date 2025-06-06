@@ -18,8 +18,7 @@ public class Main extends Application {
 		fPlan = new FenPlan();
 		fTable = new FenTable();
 		fAjout = new FenAjouter();
-		test fentest = new test();
-		fentest.show();
+		fPlan.show();
 	}
 
 	public static void main(String[] args) {
