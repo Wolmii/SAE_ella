@@ -1,7 +1,9 @@
 package app.controller;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
@@ -19,12 +21,14 @@ public class CtrlPlan {
 
     @FXML
     void recherche(ActionEvent event) {
-
+    	
     }
+    
 
-    @FXML
-    void 4b4884(ActionEvent event) {
-
+    public void initialize() {
+    	for (Node cas : plan.getChildren()) {
+    		System.out.println(cas);
+    	}
     }
 	
 }
