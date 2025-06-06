@@ -1,3 +1,5 @@
+package app.service;
+
 public abstract class Participant {
     protected int numero;
 

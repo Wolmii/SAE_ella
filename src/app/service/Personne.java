@@ -1,3 +1,5 @@
+package app.service;
+
 /**
  * La classe Personne représente un individu participant à un gala.
  * Elle hérite de la classe Participant et possède un nom et un prénom.

@@ -1,3 +1,5 @@
+package app.service;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 public class PerClassCounter {

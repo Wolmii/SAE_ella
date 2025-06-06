@@ -1,3 +1,5 @@
+package app.service;
+
 public class PetiteTable extends Table {
 
     public PetiteTable() {
