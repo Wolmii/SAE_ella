@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #FBFAFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #FBFAFF;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #CDD1DC;" BorderPane.alignment="CENTER">
          <children>
@@ -19,7 +19,7 @@
       </HBox>
    </top>
    <bottom>
-      <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-border-color: #EEB240; -fx-background-color: #FFFFFF; -fx-border-radius: 7;" BorderPane.alignment="CENTER">
+      <GridPane fx:id="plan" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-border-color: #EEB240; -fx-background-color: #FFFFFF; -fx-border-radius: 7;" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,8 +37,9 @@
    <center>
       <HBox maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField promptText="Nom" />
-            <TextField promptText="Prenom" />
+            <TextField fx:id="nom" promptText="Nom" />
+            <TextField fx:id="prenom" promptText="Prenom" />
+            <Button maxHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#recherche" prefHeight="30.0" styleClass=".button" text="Rechercher" />
          </children>
          <padding>
             <Insets left="10.0" top="10.0" />

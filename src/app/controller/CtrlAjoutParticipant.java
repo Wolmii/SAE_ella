@@ -1,0 +1,41 @@
+package app.controller;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+
+
+public class CtrlAjoutParticipant {
+
+
+	@FXML
+    private Button ajouter;
+
+    @FXML
+    private ListView<?> listPersonne;
+
+    @FXML
+    private RadioButton recherche;
+
+    @FXML
+    private TextField numTable;
+
+    @FXML
+    void 4b4884(ActionEvent event) {
+
+    }
+
+    @FXML
+    void 4b4884(ActionEvent event) {
+
+    }
+
+    @FXML
+    void 4b4884(ActionEvent event) {
+
+    }
+
+}
