@@ -1,93 +1,218 @@
 package app.service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
 
-/**
- * La classe Gala représente un événement de type gala.
- * Un gala possède un nom, une date, un lieu, et une liste des personnes invitées.
- * 
- * Cette classe permet également d'ajouter ou de retirer des personnes inscrites à l'événement.
- */
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
+
 public class Gala {
+	private final ObservableMap<String, Person> persons = FXCollections.observableHashMap();
+	public final ObservableMap<String, Group> groups = FXCollections.observableHashMap();
+    private final List<Table> tables = new ArrayList<>();
 
-    /** Nom de l'événement gala */
-    private String nom;
-
-    /** Date de l'événement */
-    private LocalDate date;
-
-    /** Lieu où se tient le gala */
-    private String lieu;
-
-    /** Liste des personnes inscrites à ce gala */
-    private ArrayList<Personne> listPersonne = new ArrayList<Personne>();
-
-    /**
-     * Constructeur de la classe Gala sans plan.
-     * Initialise le nom, la date et le lieu du gala.
-     *
-     * @param nom  Le nom du gala
-     * @param localDate La date à laquelle le gala a lieu
-     * @param lieu Le lieu de l'événement
-     */
-    public Gala(String nom, LocalDate localDate, String lieu) {
-        this.nom = nom;
-        this.date = localDate;
-        this.lieu = lieu;
+    public Gala() {
+        for (int i = 1; i <= 20; i++) tables.add(new Table(i, 12));
+        for (int i = 21; i <= 30; i++) tables.add(new Table(i, 6));
     }
 
-	/**
-     * Ajoute une personne à la liste des invités du gala.
-     *
-     * @param personne La personne à ajouter
-     */
-    public void ajouter(Personne personne) {
-        this.listPersonne.add(personne);
+    // === AJOUTER ===
+    public boolean ajouterPersonne(Person p) {
+        return persons.putIfAbsent(p.getFullName().toLowerCase(), p) == null;
     }
 
-    /**
-     * Supprime une personne de la liste des invités du gala.
-     *
-     * @param personne La personne à retirer
-     */
-    public void supprimer(Personne personne) {
-        this.listPersonne.remove(personne);
+    public boolean ajouterGroupe(Group g) {
+        if (groups.containsKey(g.getGroupName().toLowerCase())) return false;
+        g.getMembers().forEach(this::ajouterPersonne);
+        groups.put(g.getGroupName().toLowerCase(), g);
+        return true;
     }
 
-    /**
-     * Retourne le nom du gala.
-     *
-     * @return Le nom de l'événement
-     */
-    public String getNom() {
-        return this.nom;
+    // === SUPPRIMER DU GALA ===
+    public boolean supprimerPersonne(String fullName) {
+        Person p = findPerson(fullName);
+        if (p != null) {
+            enleverPersonne(fullName);
+            persons.remove(p.getFullName().toLowerCase());
+            return true;
+        }
+        return false;
     }
 
-    /**
-     * Retourne la date du gala.
-     *
-     * @return La date de l'événement
-     */
-    public LocalDate getDate() {
-        return this.date;
+    public boolean supprimerGroupe(String groupName) {
+        Group g = groups.remove(groupName.toLowerCase());
+        if (g != null) {
+            g.getMembers().forEach(m -> {
+                persons.remove(m.getFullName().toLowerCase());
+            });
+            enleverGroupe(groupName);
+            return true;
+        }
+        return false;
     }
 
-    /**
-     * Retourne le lieu du gala.
-     *
-     * @return Le lieu de l'événement
-     */
-    public String getLieu() {
-        return this.lieu;
+    // === ASSIGNER ===
+    public boolean assignerPersonne(String fullName, int tableNum) {
+        Person p = findPerson(fullName);
+        if (p == null) return false;
+
+        // Do not assign if already at a table
+        if (getTableDe(fullName) != null) return false;
+
+        Table t = getTableByNumber(tableNum);
+        return t != null && t.addPerson(p);
     }
 
-    /**
-     * Retourne la liste des personnes inscrites à ce gala.
-     *
-     * @return Une liste d'objets Personne
-     */
-    public ArrayList<Personne> getListPersonne() {
-        return this.listPersonne;
+
+    public boolean assignerGroupe(String groupName, int tableNum) {
+        Group g = groups.get(groupName.toLowerCase());
+        if (g == null) return false;
+
+        // Check if the group is already assigned by group name
+        if (isGroupAssigned(groupName)) return false;
+
+        // **New: check if any member is assigned individually or with another group**
+        if (isAnyMemberAssigned(g)) return false;
+
+        Table t = getTableByNumber(tableNum);
+        return t != null && t.addGroup(g.getMembers(), groupName);
     }
+
+
+
+    // === ENLEVER DE TABLE ===
+    public boolean enleverPersonne(String fullName) {
+        Person p = findPerson(fullName);
+        if (p == null) return false;
+        for (Table t : tables) {
+            if (t.removePerson(p)) return true;
+        }
+        return false;
+    }
+
+    public boolean enleverGroupe(String groupName) {
+        boolean success = false;
+        for (Table t : tables) {
+            success |= t.removeGroup(groupName);
+        }
+        return success;
+    }
+
+    // === DEPLACER ===
+    public boolean deplacerPersonne(String fullName, int newTableNum) {
+        Person p = findPerson(fullName);
+        if (p == null) return false;
+        Table newTable = getTableByNumber(newTableNum);
+        if (newTable == null || newTable.getAvailableSeats() < 1 || newTable.getOccupants().contains(p))
+            return false;
+
+        enleverPersonne(fullName);
+        return newTable.addPerson(p);
+    }
+
+    public boolean deplacerGroupe(String groupName, int newTableNum) {
+        Group g = groups.get(groupName.toLowerCase());
+        if (g == null) return false;
+
+        Table newTable = getTableByNumber(newTableNum);
+        List<Person> members = g.getMembers();
+
+        if (newTable == null || newTable.getAvailableSeats() < members.size())
+            return false;
+        if (members.stream().anyMatch(newTable.getOccupants()::contains))
+            return false;
+
+        enleverGroupe(groupName);
+        return newTable.addGroup(members, groupName);
+    }
+
+    // === AFFICHAGE / RECHERCHE ===
+    public Table getTableDe(String fullName) {
+        for (Table t : tables) {
+            if (t.containsPerson(fullName)) return t;
+        }
+        return null;
+    }
+
+    public List<Table> getTablesAvecPlacesLibres() {
+        List<Table> libres = new ArrayList<>();
+        for (Table t : tables) {
+            if (t.getAvailableSeats() > 0) libres.add(t);
+        }
+        return libres;
+    }
+
+    public List<Table> getTables() {
+        return tables;
+    }
+
+    public ObservableMap<String, Person> getPersons() {
+        return persons;
+    }
+
+    public ObservableMap<String, Group> getGroups() {
+        return groups;
+    }
+
+
+    public void supprimerPlan() {
+        tables.forEach(Table::clear);
+    }
+
+    // === UTILS ===
+    public Table getTableByNumber(int num) {
+        return tables.stream().filter(t -> t.getNumber() == num).findFirst().orElse(null);
+    }
+    
+    private Person findPerson(String fullName) {
+        if (fullName == null) return null;
+        return persons.get(fullName.toLowerCase());
+    }
+
+    private boolean isGroupAssigned(String groupName) {
+        for (Table t : tables) {
+            if (t.hasGroup(groupName)) return true;
+        }
+        return false;
+    }
+    
+    private boolean isAnyMemberAssigned(Group group) {
+        for (Person member : group.getMembers()) {
+            if (getTableDe(member.getFullName()) != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public String getGroupOf(String personName) {
+        String nameLower = personName.toLowerCase();
+        for (Map.Entry<String, Group> entry : groups.entrySet()) {
+            for (Person member : entry.getValue().getMembers()) {
+                if (member.getFullName().equalsIgnoreCase(nameLower)) {
+                    return entry.getKey();
+                }
+            }
+        }
+        return null;
+    }
+
+    public Set<String> getGroupMembers(String groupName) {
+        Group group = groups.get(groupName.toLowerCase());
+        if (group == null) return Collections.emptySet();
+
+        Set<String> memberNames = new HashSet<>();
+        for (Person p : group.getMembers()) {
+            memberNames.add(p.getFullName());
+        }
+        return memberNames;
+    }
+    
+    public Table getTableOf(String fullName) {
+        for (Table t : tables) {
+            if (t.containsPerson(fullName)) return t;
+        }
+        return null;
+    }
+
+    
 }

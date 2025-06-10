@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class FenTable extends Stage {
-	private CtrlTable ctrl;
+	public CtrlTable ctrl;
 
 	public FenTable() throws IOException {
 		this.setTitle("Table"); 

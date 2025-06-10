@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class FenAjouter extends Stage{
-	private CtrlAjoutParticipant ctrl;
+	public CtrlAjoutParticipant ctrl;
 
 	public FenAjouter() throws IOException {
 		this.setTitle("Ajouter Personne"); 
